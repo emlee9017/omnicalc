@@ -1,132 +1,169 @@
 class CalculationsController < ApplicationController
 
+
   def word_count
     @text = params[:user_text]
     @special_word = params[:user_word]
-
-    # ================================================================================
-    # Your code goes below.
-    # The text the user input is in the string @text.
-    # The special word the user input is in the string @special_word.
-    # ================================================================================
-
-
-    @character_count_with_spaces = @text.length
-
-    @character_count_without_spaces = @text.gsub(" ","").length
-
-    @word_count = @text.split(" ").length
-
-    @occurrences = @text.scan(@special_word).length
-
-
-    # ================================================================================
-    # Your code goes above.
-    # ================================================================================
-
-    render("word_count.html.erb")
-  end
-
-  def loan_payment
-    @apr = params[:annual_percentage_rate].to_f
-    @years = params[:number_of_years].to_i
-    @principal = params[:principal_value].to_f
-
-    # ================================================================================
-    # Your code goes below.
-    # The annual percentage rate the user input is in the decimal @apr.
-    # The number of years the user input is in the integer @years.
-    # The principal value the user input is in the decimal @principal.
-    # ================================================================================
-
-    @m_rate=@apr/1200
-    @n=12*@years
-
-    @monthly_payment = @principal*(@m_rate*((1+@m_rate)**@n))/((1+@m_rate)**@n-1)
-
     
 
-    # ================================================================================
-    # Your code goes above.
-    # ================================================================================
+        # ================================================================================
+        # Your code goes below.
+        # The text the user input is in the string @text.
+        # The special word the user input is in the string @special_word.
+        # ================================================================================
 
-    render("loan_payment.html.erb")
-  end
 
-  def time_between
-    @starting = Chronic.parse(params[:starting_time])
-    @ending = Chronic.parse(params[:ending_time])
 
-    # ================================================================================
-    # Your code goes below.
-    # The start time is in the Time @starting.
-    # The end time is in the Time @ending.
-    # Note: Ruby stores Times in terms of seconds since Jan 1, 1970.
-    #   So if you subtract one time from another, you will get an integer
-    #   number of seconds as a result.
-    # ================================================================================
 
-    @seconds = @ending-@starting
-    @minutes = @seconds/60
-    @hours = @minutes/60
-    @days = @hours/24
-    @weeks = @days/7
-    @years = @days/365.25
+        @character_count_with_spaces = "Replace this string with your answer."
 
-    # ================================================================================
-    # Your code goes above.
-    # ================================================================================
 
-    render("time_between.html.erb")
-  end
+        @character_count_without_spaces = "Replace this string with your answer."
 
-  def descriptive_statistics
-    @numbers = params[:list_of_numbers].gsub(',', '').split.map(&:to_f)
 
-    # ================================================================================
-    # Your code goes below.
-    # The numbers the user input are in the array @numbers.
-    # ================================================================================
+        @word_count = "Replace this string with your answer."
 
-    @sorted_numbers = @numbers.sort
 
-    @count = @numbers.length
+        @occurrences = "Replace this string with your answer."
 
-    @minimum = @numbers.sort[0]
 
-    @maximum = @numbers.sort[@numbers.length-1]
+        # ================================================================================
+        # Your code goes above.
+        # ================================================================================
 
-    @range = @maximum - @minimum
 
-    @median = 
-
-    if @numbers.length.odd?
-        @numbers.sort[(@numbers.length/2).to_i]
-    else
-        (@numbers.sort[(@numbers.length/2)-1]+@numbers.sort[(@numbers.length/2)])/2
+        render("word_count.html.erb")
     end
+    
 
-    @sum=0
-    @numbers.each do |i|
-        @sum += i
+    def loan_payment
+        @apr = params[:annual_percentage_rate].to_f
+        @years = params[:number_of_years].to_i
+        @principal = params[:principal_value].to_f
+
+
+        # ================================================================================
+        # Your code goes below.
+        # The annual percentage rate the user input is in the decimal @apr.
+        # The number of years the user input is in the integer @years.
+        # The principal value the user input is in the decimal @principal.
+        # ================================================================================
+
+
+        @monthly_payment = "Replace this string with your answer."
+
+
+        # ================================================================================
+        # Your code goes above.
+        # ================================================================================
+
+
+        render("loan_payment.html.erb")
     end
+    
 
-    @mean = @sum/@count
+    def time_between
+        @starting = Chronic.parse(params[:starting_time])
+        @ending = Chronic.parse(params[:ending_time])
 
-    @var_num=0
-    @numbers.each do |i|
-        @var_num += (i-@mean)**2
+
+        # ================================================================================
+        # Your code goes below.
+        # The start time is in the Time @starting.
+        # The end time is in the Time @ending.
+        # Note: Ruby stores Times in terms of seconds since Jan 1, 1970.
+        #   So if you subtract one time from another, you will get an integer
+        #   number of seconds as a result.
+        # ================================================================================
+
+
+        @seconds = "Replace this string with your answer."
+        @minutes = "Replace this string with your answer."
+        @hours = "Replace this string with your answer."
+        @days = "Replace this string with your answer."
+        @weeks = "Replace this string with your answer."
+        @years = "Replace this string with your answer."
+
+
+        # ================================================================================
+        # Your code goes above.
+        # ================================================================================
+
+
+        render("time_between.html.erb")
     end
-    @variance = @var_num/@counts
+    
 
-    @standard_deviation = @variance**(1/2)
+    def descriptive_statistics
+        @numbers = params[:list_of_numbers].gsub(',', '').split.map(&:to_f)
 
-    @mode = "Replace this string with your answer."
 
-    # ================================================================================
-    # Your code goes above.
-    # ================================================================================
+        # ================================================================================
+        # Your code goes below.
+        # The numbers the user input are in the array @numbers.
+        # ================================================================================
 
-    render("descriptive_statistics.html.erb")
-  end
+
+        @sorted_numbers = @numbers.sort
+
+
+        @count = @numbers.length
+
+
+        @minimum = @numbers.sort[0]
+
+
+        @maximum = @numbers.sort[@numbers.length-1]
+
+
+        @range =  @maximum - @minimum
+
+
+        @median = 
+        if @numbers.length.odd?
+            @numbers.sort[(@numbers.length/2).to_i]
+        else
+            (@numbers.sort[(@numbers.length/2)-1]+@numbers.sort[(@numbers.length/2)])/2
+        end
+
+        @sum=0
+        @numbers.each do |i|
+            @sum += i
+        end
+
+        @mean =  @sum/@count
+
+        @var_num=0
+        @numbers.each do |i|
+         @var_num += (i-@mean)**2
+        end
+        @variance = @var_num/@count
+
+        @standard_deviation = @variance**0.5
+
+        @hash_mode=Hash.new
+        @numbers.each do |i|
+            @hash_mode[i]=0
+        end
+
+        @numbers.sort.each do |i|
+            @hash_mode[i] += 1
+        end
+
+        @mode=@minimum     
+        @mode_cnt=1 
+        @numbers.sort.each do |i|
+            if @hash_mode[i] > @mode_cnt
+                @mode=i
+            end
+        end
+
+        # ================================================================================
+        # Your code goes above.
+        # ================================================================================
+
+
+        render("descriptive_statistics.html.erb")
+    end
 end
+
